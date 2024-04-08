@@ -24,6 +24,9 @@ function DropdownNavbar() {
             <a className="nav-link" href="#">Something else</a>
           </li>
         </ul>
+        <form role="search">
+          <input className="form-control" type="search" placeholder="Search" aria-label="Search"/>
+        </form>
       </div>
     </nav>
   );
