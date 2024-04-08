@@ -1,3 +1,14 @@
+
+.nav-layout {
+    margin-left:15px;
+    margin-right: 15px;
+}
+
+.nav-dropdown-layout {
+    margin-left:25px;
+    margin-right: 25px;
+}
+
 .bd-placeholder-img {
   font-size: 1.125rem;
   text-anchor: middle;
