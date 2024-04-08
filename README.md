@@ -2,6 +2,12 @@
 
 **Project_Name** is a full-stack web application designed to facilitate idea sharing, collaboration, and networking among individuals in the Boston area. Whether you're a student looking to join study groups, a developer seeking project collaborators, or an entrepreneur with innovative ideas, **Project_Name** provides a platform for you to connect with like-minded individuals in your local community.
 
+## Concerns
+If we are using Github public repo, can we add fake data (by adding Boston location into each project) and make it into our own api?
+If not, can we just use our repos (student created project) as local projects?
+
+Or, can we simply add external API for decorative purposes? (searching projects by location radius)
+
 ## How to Run This App 
 
 On your terminal:
@@ -33,7 +39,10 @@ Borui Chen -
 ## Project Checklist (devs)
 
 - ## Frontend
-    - Home 
+    - Home
+        - Search by ProjectID
+        - Signin button 
+        - Recent projects by other students
     - Profile
     - Search
     - Project Details

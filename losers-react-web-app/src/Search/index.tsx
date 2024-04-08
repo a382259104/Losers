@@ -2,6 +2,7 @@ import Nav from "../Nav";
 
 function SearchPage() {
 
+
   return (
     <>
       <Nav />
