@@ -2,7 +2,7 @@
     width: 400px;
     max-width: 100%;
     margin: 50px auto;
-    background-color: lightblue;
+    background-color: rgb(47, 126, 152);
     border-radius: 10px;
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
     font-family: "Poppins", sans-serif;
@@ -60,5 +60,23 @@
   #login-form form input[type="submit"]:hover {
     background-color: deepskyblue;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  }
+
+  #login-form form div {
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    color: gray;
+    margin-bottom: 20px;
+  }
+   
+  #login-form form div p {
+    margin-bottom: 0;
+    /* padding-right: 10px; */
+  }
+
+  #login-form form div label{
+    margin:0%;
+    margin-left: 5px;
   }
   
