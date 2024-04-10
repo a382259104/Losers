@@ -4,7 +4,8 @@ const userSchema = new mongoose.Schema({
     username: { type: String, required: true, unique: true },
     password: { type: String, required: true },
     email: String,
-    role: { type: String, enum: ["MEMBER", "LEADER", "ADMIN", "USER"], default: "MEMBER"}},
+    role: { type: String, enum: ["MEMBER", "LEADER", "ADMIN", "USER"], default: "MEMBER" }
+},
     { collection: "users" });
 
 const model = mongoose.model("UserModel", userSchema);
@@ -22,6 +23,9 @@ const findAllUsers = async (req, res) => {
 function UserRoutes(app) {
 
     app.get("/api/users", findAllUsers);
+    app.get('/', (req, res) => {
+        res.send('You have connected to Losers! There\'s nothing to see here ')
+    });
 
 }
 
