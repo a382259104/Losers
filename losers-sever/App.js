@@ -1,5 +1,6 @@
 import express from "express";
 import { mongoose } from "mongoose";
+import UserRoutes from "../../kanbas-node-server-app/Users/routes";
 
 const app = express();
 
@@ -7,5 +8,6 @@ const CONNECTION_STRING = `mongodb+srv://a382259104:zXu2y332Fxc9olNj@winners.uad
 
 mongoose.connect(CONNECTION_STRING);
 
+UserRoutes(app);
 
 app.listen(process.env.PORT);
