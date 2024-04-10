@@ -1,6 +1,6 @@
-export default teams[
+export default [
     {
-        "Project_Name": "Team 1",
+        "Project_Name": "Team(1-2,3,4)",
         "Project_Description" : "",
         "Leader_ID": "1",
         "Team_Members_ID": [
@@ -40,10 +40,19 @@ export default teams[
         "Completed_Project": false
     },
     {
-        "Project_Name": "Team 2",
+        "Project_Name": "Team(2-)",
         "Project_Description" : "",
-        "Leader_ID": 2,
+        "Leader_ID": "2",
         "Team_Members_ID": [],
+        "Project_Stages": [],
+        "CurrentStatus": 0,
+        "Completed_Project": false
+    },
+    {
+        "Project_Name": "Team(2-1)",
+        "Project_Description" : "",
+        "Leader_ID": "2",
+        "Team_Members_ID": ["1"],
         "Project_Stages": [],
         "CurrentStatus": 0,
         "Completed_Project": false
