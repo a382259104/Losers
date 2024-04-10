@@ -1,6 +1,6 @@
 import express from "express";
 import { mongoose } from "mongoose";
-import UserRoutes from "./Users/routes";
+import UserRoutes from "./Users/routes.js";
 
 const app = express();
 
