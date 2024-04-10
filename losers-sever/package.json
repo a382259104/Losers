@@ -1,11 +1,28 @@
 {
+  "type": "module",
   "name": "losers-sever",
   "version": "1.0.0",
-  "description": "",
+  "description": "A server for our web app",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node App.js"
   },
-  "author": "",
-  "license": "ISC"
+  "author": "YuFeng Lin, Tiffany Chen, Qingnan Li, Borui Chen",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/a382259104/Losers.git"
+  },
+  "keywords": [
+    "server"
+  ],
+  "bugs": {
+    "url": "https://github.com/a382259104/Losers/issues"
+  },
+  "homepage": "https://github.com/a382259104/Losers#readme",
+  "dependencies": {
+    "express": "^4.19.2",
+    "mongoose": "^8.3.1"
+  }
 }
