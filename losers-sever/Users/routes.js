@@ -13,7 +13,6 @@ const model = mongoose.model("UserModel", userSchema);
 const findAllUsers = async (req, res) => {
     console.log("Server attempting get all users")
     const users = await model.find();
-    
     res.json(users);
 };
 
