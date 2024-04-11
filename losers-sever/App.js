@@ -9,8 +9,8 @@ const app = express();
 const CONNECTION_STRING = `mongodb+srv://a382259104:zXu2y332Fxc9olNj@winners.uad2aje.mongodb.net/?retryWrites=true&w=majority&appName=Winners`
 // const CONNECTION_STRING = "mongodb://127.0.0.1:27017/winnie"
 
-MongoDataBase = mongoose.connect(CONNECTION_STRING);
-MongoDataBase.use("Winners");
+mongoose.connect(CONNECTION_STRING);
+mongoose.use("Winners");
 
 // Event listener for successful connection
 mongoose.connection.on('connected', () => {
