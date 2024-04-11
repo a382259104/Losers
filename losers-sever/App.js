@@ -6,10 +6,11 @@ import cors from "cors";
 
 const app = express();
 
-const CONNECTION_STRING = `mongodb+srv://a382259104:lyf030920@cluster0.llb0n7s.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0/haha`
+const CONNECTION_STRING = `mongodb+srv://a382259104:zXu2y332Fxc9olNj@winners.uad2aje.mongodb.net/?retryWrites=true&w=majority&appName=Winners`
 // const CONNECTION_STRING = "mongodb://127.0.0.1:27017/winnie"
 
 mongoose.connect(CONNECTION_STRING);
+mongoose.db("Winners");
 
 // Event listener for successful connection
 mongoose.connection.on('connected', () => {
