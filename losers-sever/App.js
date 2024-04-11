@@ -1,4 +1,5 @@
 import express from "express";
+import session from "express-session";
 import { mongoose } from "mongoose";
 import UserRoutes from "./Users/routes.js";
 import cors from "cors";
