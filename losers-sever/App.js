@@ -1,6 +1,7 @@
 import express from "express";
 import { mongoose } from "mongoose";
 import UserRoutes from "./Users/routes.js";
+import cors from "cors";
 
 const app = express();
 
@@ -42,6 +43,9 @@ if (process.env.NODE_ENV !== "development") {
     secure: true,
   };
 }
+
+app.use(session(sessionOptions));
+app.use(express.json())
 
 
 UserRoutes(app)
