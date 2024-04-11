@@ -4,7 +4,8 @@ import UserRoutes from "./Users/routes.js";
 
 const app = express();
 
-const CONNECTION_STRING = `mongodb+srv://a382259104:zXu2y332Fxc9olNj@winners.uad2aje.mongodb.net/?retryWrites=true&w=majority&appName=Winners/Winners`
+const CONNECTION_STRING = `mongodb+srv://a382259104:zXu2y332Fxc9olNj@winners.uad2aje.mongodb.net/?retryWrites=true&w=majority&appName=Winners/`
+// const CONNECTION_STRING = "mongodb://127.0.0.1:27017/winnie"
 
 mongoose.connect(CONNECTION_STRING);
 
@@ -26,4 +27,4 @@ mongoose.connection.on('connected', () => {
 
 UserRoutes(app)
 
-app.listen(process.env.PORT);
+app.listen(process.env.PORT || 4000);
