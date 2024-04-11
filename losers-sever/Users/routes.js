@@ -6,7 +6,7 @@ const userSchema = new mongoose.Schema({
     email: String,
     role: { type: String, enum: ["MEMBER", "LEADER", "ADMIN", "USER"], default: "MEMBER" }
 },
-    { collection: "users" });
+    { collection: "project_users" });
 
 const model = mongoose.model("UserModel", userSchema, "Winners");
 
