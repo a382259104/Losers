@@ -8,7 +8,7 @@ const userSchema = new mongoose.Schema({
 },
     { collection: "users" });
 
-const model = mongoose.model("UserModel", userSchema);
+const model = mongoose.model("UserModel", userSchema, "Winners");
 
 const findAllUsers = async (req, res) => {
     console.log("Server attempting get all users")
