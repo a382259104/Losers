@@ -8,8 +8,8 @@ const app = express()
 app.use(cors());
 app.use(express.json());
 
-Hello(app)
-Projects(app)
-ProejectStatusAPI(app)
+Hello(app);
+Projects(app);
+ProejectStatusAPI(app);
 
 app.listen(process.env.PORT || 4001)

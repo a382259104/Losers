@@ -11,7 +11,7 @@ export default function Projects(app) {
 
     //get projects of a certain user AS LEADER
     //good
-    app.get('/api/projects/:uid/leader', (req, res) => {
+    app.get('/api/projects/user/:uid/leader', (req, res) => {
         const { uid } = req.params;
         const projects = db.teams.filter
             ((p) => p.Leader_ID === uid)
@@ -20,7 +20,7 @@ export default function Projects(app) {
 
     //get projects of a certain user
     //good
-    app.get('/api/projects/:uid', (req, res) => {
+    app.get('/api/projects/user/:uid', (req, res) => {
         const { uid } = req.params;
         const projects = db.teams.filter
             ((p) => ((p.Leader_ID === uid) || (p.Team_Members_ID.includes(uid))))
