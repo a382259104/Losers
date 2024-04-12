@@ -3,7 +3,7 @@ import { HashRouter, Link } from 'react-router-dom';
 import HomePage from './Home';
 import Test from './TestPages';
 import LoginPage from './Login';
-import ProfilePage from './Profile';
+import Profile from './Users/Profile';
 import SearchPage from './Search';
 import DetailsPage from './Details';
 import RegisterPage from './Register';
@@ -18,7 +18,7 @@ function App() {
           <Route path="/Search" element={<SearchPage/>} />
           <Route path="/Login" element={<LoginPage/>} />
           <Route path="/Register" element={<RegisterPage/>} />
-          <Route path="/Profile" element={<ProfilePage/>} />
+          <Route path="/Profile" element={<Profile/>} />
           <Route path="/Details" element={<DetailsPage/>} />
           <Route path="/Test" element={<Test />} />
         </Routes>

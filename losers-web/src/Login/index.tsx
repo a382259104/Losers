@@ -15,12 +15,11 @@ function LoginPage() {
         username: "",
         password: "",
         email: "",
-        agree: false
     });
     const navigate = useNavigate();
     const signin = async () => {
         await client.signin(credentials);
-        navigate("/Kanbas/Account/Profile");
+        navigate("/Profile");
     };
 
 
@@ -33,11 +32,11 @@ function LoginPage() {
                     <label htmlFor="username">Username:</label>
                     <input type="text" id="username" name="username" value={credentials?.username}
                     // after we add-in the model
-                    // onClick={(e) => setCredentials({ ...credentials, username: e.target.value}) }
+                    onChange={(e) => setCredentials({ ...credentials, username: e.target.value}) }
                     />
                     <label htmlFor="password">Password:</label>
                     <input type="password" id="password" name="password" value={credentials?.password}
-                    // onClick={(e)=>setCredentials({ ...credentials, password: e.target.value })}
+                    onChange={(e)=>setCredentials({ ...credentials, password: e.target.value })}
                     />
                     <input type="submit" value="Submit" />
 

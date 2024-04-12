@@ -15,10 +15,10 @@ function RegisterPage() {
         username: "",
         password: "",
         email: "",
-        agree:false
     });
 
     const [confirmPassword, setConfirmPassword] = useState("");
+    const [agree, setAgree] = useState(false);
     const [errorMessage, setErrorMessage] = useState<string>("");
     const navigate = useNavigate();
     // const signin = async () => {
@@ -42,7 +42,7 @@ function RegisterPage() {
             setErrorMessage("Please make sure to enter the same passwords");
             return;
         }
-        if (!credentials.agree) {
+        if (!agree) {
             setErrorMessage("Please agree to the terms!");
             return;
         }
@@ -87,7 +87,7 @@ function RegisterPage() {
 
 
                     <div>
-                        <input type="checkbox" id="agree" name="agree" checked={credentials.agree} onChange={handleChange} />
+                        <input type="checkbox" id="agree" name="agree" checked={agree} onChange={()=>setAgree(!agree)} />
                         <label htmlFor="agree">I accept the Terms and Conditions</label>
                     </div>
 
