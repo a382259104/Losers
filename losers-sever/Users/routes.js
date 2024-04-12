@@ -6,9 +6,9 @@ const userSchema = new mongoose.Schema({
     email: String,
     role: { type: String, enum: ["MEMBER", "LEADER", "ADMIN", "USER"], default: "MEMBER" }
 },
-    { collection: "project_users" });
+    { collection: "users" });
 
-const model = mongoose.model("UserModel", userSchema, "Winners");
+const model = mongoose.model("UserModel", userSchema);
 
 const findAllUsers = async (req, res) => {
     console.log("Server attempting get all users")
