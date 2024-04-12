@@ -1,5 +1,5 @@
 import axios from "axios";
-const BASE_API = process.env.REACT_APP_API_BASE;
+const BASE_API = process.env.REACT_APP_API_BASE || "";
 const USERS_API = `${BASE_API}/api/users`;
 
 // TBD
