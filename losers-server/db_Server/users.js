@@ -1,0 +1,37 @@
+export default [
+    {
+        "_id": "1",
+        "username": "User1",
+        "password": "123456",
+        "email": "user1@northeastern.edu",
+        "role": "member"
+    },
+    {
+        "_id": "2",
+        "username": "User2",
+        "password": "234567",
+        "email": "user2@northeastern.edu",
+        "role": "member"
+    },
+    {
+        "_id": "3",
+        "username": "User3",
+        "password": "345678",
+        "email": "user3@northeastern.edu",
+        "role": "member"
+    },
+    {
+        "_id": "4",
+        "username": "User4",
+        "password": "456789",
+        "email": "user4@northeastern.edu",
+        "role": "member"
+    },
+    {
+        "_id": "5",
+        "username": "ATM",
+        "password": "1234567890",
+        "email": "Invester1@northeastern.edu",
+        "role": "investor"
+    }
+]
