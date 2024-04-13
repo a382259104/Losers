@@ -1,6 +1,11 @@
 import User from "./userModel.js";
 
-let currentUserLocal = null;
+let currentUserLocal = {
+    username:'',
+    password:'',
+    email:'',
+    role:''
+};
 
 const findAllUsers = async (req, res) => {
     console.log("Server attempting get all users")
@@ -14,18 +19,22 @@ const signin = async (req, res) => {
     if (currentUser) {
         req.session["currentUser"] = currentUser;
         currentUserLocal = currentUser;
+        console.log("Login Successful!!!!!!!!")
         res.json(currentUser);
     } else {
         res.sendStatus(402);
     }
 };
 
+
 const profile = (req, res) => {
-    const currentUserLocal = req.session["currentUser"];
-    if (!currentUserLocal) {
-        res.sendStatus(401);
+    if (!currentUserLocal.username) {
+        console.log("we don't have a user")
+        console.log(currentUserLocal)
+        res.json(currentUserLocal);
         return;
     }
+    console.log(currentUserLocal);
     res.json(currentUserLocal);
 };
 

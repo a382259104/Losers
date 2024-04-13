@@ -2,7 +2,7 @@ import { Navigate, Route, Routes } from 'react-router';
 import { HashRouter, Link } from 'react-router-dom';
 import HomePage from './Home';
 import Test from './TestPages';
-import LoginPage from './Login';
+import LoginPage from './Users';
 import Profile from './Users/Profile';
 import SearchPage from './Search';
 import DetailsPage from './Details';

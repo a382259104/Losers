@@ -1,8 +1,8 @@
 import { useState } from "react";
 import Nav from "../Nav";
 import "./login.css";
-import { User } from "../Users/client";
-import * as client from "../Users/client"
+import { User } from "./client";
+import * as client from "./client"
 import { useNavigate } from "react-router";
 import { Link } from "react-router-dom";
 
@@ -17,7 +17,8 @@ function LoginPage() {
         email: "",
     });
     const navigate = useNavigate();
-    const signin = async () => {
+    const signin = async (e:any) => {
+        e.preventDefault();
         await client.signin(credentials);
         navigate("/Profile");
     };
