@@ -6,10 +6,17 @@ export default function Profile() {
         username: "", password: "",
         firstName: "", lastName: "", dob: "", email: "", role: "USER"
     });
+
+    const [loggedIn, setLogin] = useState(false);
+
     const navigate = useNavigate();
     const fetchProfile = async () => {
         const account = await User.profile();
-        setProfile(account);
+
+        if (account.username != '') {
+            setLogin(true)
+            setProfile(account);
+        }
     };
 
     // const save = async () => {
@@ -18,10 +25,11 @@ export default function Profile() {
     // };
 
 
-    // const signout = async () => {
-    //     await client.signout();
-    //     navigate("/Kanbas/Account/Signin");
-    // };
+    const signout = async () => {
+        const empty = await User.signout();
+        setProfile(empty);
+        navigate("/Login");
+    };
 
 
     useEffect(() => {
@@ -37,7 +45,7 @@ export default function Profile() {
                 Users
             </Link>
 
-            {profile && (
+            {profile ?
                 <div>
                     <input value={profile.username} onChange={(e) =>
                         setProfile({ ...profile, username: e.target.value })} />
@@ -59,14 +67,18 @@ export default function Profile() {
                     </select>
                     {/* <button onClick={save}>
                         Save
-                    </button>
+                    </button> */}
                     <button onClick={signout}>
                         Signout
-                    </button> */}
+                    </button>
 
 
                 </div>
-            )}
+                :
+                <div>
+                    <h1>hiiii</h1>
+                </div>
+            }
         </div>
     );
 }

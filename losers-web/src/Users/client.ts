@@ -28,3 +28,16 @@ export const profile = async () => {
     console.log(`This is the Profile${response}`)
     return response.data;
   };
+
+
+  export const signup = async (user: any) => {
+    const response = await axios.post(`${USERS_API}/signup`, user);
+    return response.data;
+  };
+  
+  export const signout = async () => {
+    const response = await axios.post(`${USERS_API}/signout`);
+    return response.data;
+  };
+  
+  
