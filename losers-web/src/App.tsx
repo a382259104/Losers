@@ -2,11 +2,11 @@ import { Navigate, Route, Routes } from 'react-router';
 import { HashRouter, Link } from 'react-router-dom';
 import HomePage from './Home';
 import Test from './TestPages';
-import LoginPage from './Users';
-import Profile from './Users/Profile';
+import LoginPage from './Users/login';
+import Profile from './Users/profile';
 import SearchPage from './Search';
 import DetailsPage from './Details';
-import RegisterPage from './Register';
+import RegisterPage from './Users/register';
 
 function App() {
   return (

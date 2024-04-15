@@ -22,7 +22,7 @@ const signin = async (req, res) => {
         console.log("Login Successful!!!!!!!!")
         res.json(currentUser);
     } else {
-        res.sendStatus(402);
+        return res.status(200).json({ error: "Wrong username or password." });
     }
 };
 
@@ -34,20 +34,29 @@ const profile = (req, res) => {
         res.json(currentUserLocal);
         return;
     }
-    console.log(currentUserLocal);
     res.json(currentUserLocal);
+    console.log(`Fetching profile for: ${currentUserLocal}`)
 };
 
 
 const signup = async (req, res) => {
-    const user = await dao.findUserByUsername(req.body.username);
+    const user = await User.findOne({username: req.body.username});
+
+    console.log(`Found user: ${user} in signing up`)
     if (user) {
-        res.status(400).json(
-            { message: "Username already taken" });
+        console.log("USER NAME TAKEN")
+        return res.status(200).json({ error: "Username already taken" });
     }
-    const currentUser = await dao.createUser(req.body);
-    req.session["currentUser"] = currentUser;
-    res.json(currentUser);
+
+
+    delete req.body._id;
+    const newUser = await User.create(req.body);
+
+    req.session["currentUser"] = newUser;
+    currentUserLocal = newUser;
+
+    console.log(`LocalUser created:${currentUserLocal.username}`)
+    res.json(newUser);
 };
 
 const signout = (req, res) => {
@@ -56,6 +65,8 @@ const signout = (req, res) => {
     res.json(currentUserLocal)
     res.sendStatus(currentUser);
 };
+
+
 
 
 function UserRoutes(app) {

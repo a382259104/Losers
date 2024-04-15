@@ -10,17 +10,6 @@ export interface User {
   email: string
 };
 
-export const signin = async (credentials: User) => {
-  console.log(`users_api:${USERS_API}`)
-  const response = await axios.post(`${USERS_API}/signin`, credentials);
-  return response.data;
-};
-
-
-export const register = async (credentials: User) => {
-  const response = await axios.post(`${USERS_API}/register`, credentials);
-  return response.data;
-};
 
 export const profile = async () => {
   console.log(`Hitting profile page ${USERS_API}`)
@@ -30,14 +19,19 @@ export const profile = async () => {
   };
 
 
-  export const signup = async (user: any) => {
-    const response = await axios.post(`${USERS_API}/signup`, user);
-    return response.data;
-  };
-  
-  export const signout = async () => {
-    const response = await axios.post(`${USERS_API}/signout`);
-    return response.data;
-  };
-  
+export const signin = async (credentials: User) => {
+  console.log(`users_api:${USERS_API}`)
+  const response = await axios.post(`${USERS_API}/signin`, credentials);
+  return response.data;
+};
+export const signup = async (credentials: User) => {
+  const response = await axios.post(`${USERS_API}/signup`, credentials);
+  return response.data;
+};
+
+export const signout = async () => {
+  const response = await axios.post(`${USERS_API}/signout`);
+  return response.data;
+};
+
   

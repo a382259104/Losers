@@ -1,8 +1,8 @@
 import { useState } from "react";
 import Nav from "../Nav";
 import "../Users/login.css";
-import { User } from "../Users/client";
-import * as client from "../Users/client"
+import { User } from "./client";
+import * as client from "./client"
 import { useNavigate } from "react-router";
 import { Link } from "react-router-dom";
 
@@ -48,16 +48,16 @@ function RegisterPage() {
         }
         // Now you can proceed with registration
         // For example:
-        // register(credentials);
-        // navigate("/success"); // navigate to success page
+        client.signup(credentials).then((result) => {
+            if (result.error) {
+                setErrorMessage("Username is taken, please try another one.");
+            } else {
+                navigate("/Profile"); // navigate to success page
+            }
+        });
+
+        
     };
-
-
-    const signin = async () => {
-        await client.signin(credentials);
-        navigate("/Kanbas/Account/Profile");
-    };
-
 
 
     return (

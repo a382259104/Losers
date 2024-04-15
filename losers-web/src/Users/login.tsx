@@ -17,11 +17,18 @@ function LoginPage() {
         email: "",
     });
     const navigate = useNavigate();
-    const signin = async (e:any) => {
+    const signin = async (e: any) => {
         e.preventDefault();
-        await client.signin(credentials);
-        navigate("/Profile");
+        await client.signin(credentials).then((result) => {
+            if (result.error) {
+                setErrorMessage("Username or password incorrect. Please try again.")
+            } else {
+                navigate("/Profile");
+            }
+        });
     };
+
+    const [errorMessage, setErrorMessage] = useState<string>("");
 
 
     return (
@@ -30,14 +37,15 @@ function LoginPage() {
             <div id="login-form">
                 <h1>Login</h1>
                 <form onSubmit={signin}>
+                    {errorMessage && <div className="error-message">{errorMessage}</div>}
                     <label htmlFor="username">Username:</label>
                     <input type="text" id="username" name="username" value={credentials?.username}
-                    // after we add-in the model
-                    onChange={(e) => setCredentials({ ...credentials, username: e.target.value}) }
+                        // after we add-in the model
+                        onChange={(e) => setCredentials({ ...credentials, username: e.target.value })}
                     />
                     <label htmlFor="password">Password:</label>
                     <input type="password" id="password" name="password" value={credentials?.password}
-                    onChange={(e)=>setCredentials({ ...credentials, password: e.target.value })}
+                        onChange={(e) => setCredentials({ ...credentials, password: e.target.value })}
                     />
                     <input type="submit" value="Submit" />
 
