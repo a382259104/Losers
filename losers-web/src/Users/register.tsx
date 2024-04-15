@@ -15,6 +15,7 @@ function RegisterPage() {
         username: "",
         password: "",
         email: "",
+        role: ""
     });
 
     const [confirmPassword, setConfirmPassword] = useState("");
@@ -56,7 +57,7 @@ function RegisterPage() {
             }
         });
 
-        
+
     };
 
 
@@ -85,9 +86,21 @@ function RegisterPage() {
                         onChange={(e) => setConfirmPassword(e.target.value)}
                     />
 
+                    <div>
+                        <input type="checkbox" checked={credentials?.role === "ADMIN"}
+                            onChange={(e) => setCredentials({
+                                ...credentials,
+                                role: e.target.checked ? "ADMIN" : "MEMBER"
+                            })
+                            }
+                        />
+                        <label>Registering as an administrator?</label>
+
+                    </div>
+
 
                     <div>
-                        <input type="checkbox" id="agree" name="agree" checked={agree} onChange={()=>setAgree(!agree)} />
+                        <input type="checkbox" id="agree" name="agree" checked={agree} onChange={() => setAgree(!agree)} />
                         <label htmlFor="agree">I accept the Terms and Conditions</label>
                     </div>
 
@@ -96,7 +109,7 @@ function RegisterPage() {
 
                     <div>
                         <p>Already has an account? </p>
-                        <Link to={"/Login"}>Sign in!</Link>
+                        <Link to={"/Login"}>Sign in</Link>
                     </div>
 
 

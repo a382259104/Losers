@@ -15,6 +15,7 @@ function LoginPage() {
         username: "",
         password: "",
         email: "",
+        role: "MEMBER"
     });
     const navigate = useNavigate();
     const signin = async (e: any) => {
@@ -22,6 +23,8 @@ function LoginPage() {
         await client.signin(credentials).then((result) => {
             if (result.error) {
                 setErrorMessage("Username or password incorrect. Please try again.")
+            } else if (result.poop) {
+                setErrorMessage("Incorrect user role.")
             } else {
                 navigate("/Profile");
             }
@@ -47,6 +50,19 @@ function LoginPage() {
                     <input type="password" id="password" name="password" value={credentials?.password}
                         onChange={(e) => setCredentials({ ...credentials, password: e.target.value })}
                     />
+
+                    <div>
+                        <input type="checkbox" checked={credentials?.role === "ADMIN"}
+                            onChange={(e) => setCredentials({
+                                ...credentials,
+                                role: e.target.checked ? "ADMIN" : "MEMBER"
+                            })
+                            }
+                        />
+                        <p>Are you an administrator?</p>
+
+                    </div>
+
                     <input type="submit" value="Submit" />
 
 
@@ -54,6 +70,8 @@ function LoginPage() {
                         <p>Don't have an account? </p>
                         <Link to={"/Register"}>Create an account</Link>
                     </div>
+
+
 
 
 

@@ -68,11 +68,16 @@
     align-items: center;
     color: gray;
     margin-bottom: 20px;
+    
+  }
+
+  #login-form form div input {
+    margin-right: 3px;
   }
    
   #login-form form div p {
     margin-bottom: 0;
-    /* padding-right: 10px; */
+    padding-right: 10px;
   }
 
   #login-form form div label{

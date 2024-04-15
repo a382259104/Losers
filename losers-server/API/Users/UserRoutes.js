@@ -14,13 +14,23 @@ const findAllUsers = async (req, res) => {
 };
 
 const signin = async (req, res) => {
-    const { username, password } = req.body;
+    const { username, password, role } = req.body;
     const currentUser = await User.findOne({ username, password });
     if (currentUser) {
-        req.session["currentUser"] = currentUser;
-        currentUserLocal = currentUser;
-        console.log("Login Successful!!!!!!!!")
-        res.json(currentUser);
+
+        if (currentUser.role === role) {
+            req.session["currentUser"] = currentUser;
+            currentUserLocal = currentUser;
+            console.log("Login Successful!!!!!!!!")
+            res.json(currentUser);
+        } else {
+            console.log("the roles didn't match...")
+            console.log(currentUser.role)
+            console.log(role)
+
+            return res.status(200).json({ poop: "Wrong role" });
+        }
+
     } else {
         return res.status(200).json({ error: "Wrong username or password." });
     }
@@ -40,7 +50,7 @@ const profile = (req, res) => {
 
 
 const signup = async (req, res) => {
-    const user = await User.findOne({username: req.body.username});
+    const user = await User.findOne({ username: req.body.username });
 
     console.log(`Found user: ${user} in signing up`)
     if (user) {
