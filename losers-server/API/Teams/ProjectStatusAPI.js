@@ -55,6 +55,7 @@ export default function ProjectStatusAPI(app) {
     // Add new project status to current project
     app.post('/api/projects/team/:tid', (req, res) => {
         // Implement the post route logic here
+        // TODO: ADD PROJECT FROM DATA FROM API
     });
 
     // Update project status - complete status

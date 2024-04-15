@@ -19,7 +19,15 @@ export default function Profile() {
         }
     };
 
-    // const save = async () => {
+ 
+
+
+    useEffect(() => {
+        fetchProfile();
+    }, []);
+
+
+       // const save = async () => {
     //     console.log(profile.username)
     //     await client.updateUser(profile);
     // };
@@ -30,12 +38,6 @@ export default function Profile() {
         setProfile(empty);
         navigate("/Login");
     };
-
-
-    useEffect(() => {
-        fetchProfile();
-    }, []);
-
 
     return (
         <div>

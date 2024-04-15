@@ -13,6 +13,8 @@ function Nav() {
                         className={`nav-link ${pathname.includes("Login") ? "active" : ""}`}>Login</Link>
                   <Link to="/Details"
                         className={`nav-link ${pathname.includes("Details") ? "active" : ""}`}>Details</Link>
+                  <Link to="/ExternalAPI"
+                        className={`nav-link ${pathname.includes("ExternalAPI") ? "active" : ""}`}>api</Link>
             </nav>
       );
 }
