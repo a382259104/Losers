@@ -1,25 +1,34 @@
-import * as User from "./client"
+import * as UserModel from "./client"
+import {User} from "./client"
 import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import Nav from "../Nav";
+import { stat } from "fs";
+
 export default function Profile() {
-    const [profile, setProfile] = useState({
-        username: "", password: "",
-        firstName: "", lastName: "", dob: "", email: "", role: "USER"
+    const [credentials, setCredentials] = useState<User>({
+        _id: "",
+        username: "",
+        password: "",
+        email: "",
+        role: "MEMBER"
     });
 
     const [loggedIn, setLogin] = useState(false);
+    const [updated, setUpdated] = useState(false);
+    const [dup, setDup] = useState(false);
 
     const navigate = useNavigate();
     const fetchProfile = async () => {
-        const account = await User.profile();
+        const account = await UserModel.profile();
 
         if (account.username != '') {
             setLogin(true)
-            setProfile(account);
+            setCredentials(account);
         }
     };
 
- 
+
 
 
     useEffect(() => {
@@ -27,59 +36,82 @@ export default function Profile() {
     }, []);
 
 
-       // const save = async () => {
-    //     console.log(profile.username)
-    //     await client.updateUser(profile);
-    // };
+    const save = async () => {
+        await UserModel.updateUser(credentials).then((result)=> {
+            if (result.success) {
+                setUpdated(true)
+            } 
+            if (result.error) {
+                setDup(true)
+            }
+        } )
+    };
 
 
     const signout = async () => {
-        const empty = await User.signout();
-        setProfile(empty);
+        const empty = await UserModel.signout();
+        setCredentials(empty);
         navigate("/Login");
     };
 
+    const profilePicURL = 'https://t3.ftcdn.net/jpg/05/53/79/60/360_F_553796090_XHrE6R9jwmBJUMo9HKl41hyHJ5gqt9oz.jpg'
+
     return (
         <div>
-            <h1>Profile</h1>
-            <Link to="/Kanbas/Account/Admin/Users"
+            <Nav />
+            {/* <Link to="/Kanbas/Account/Admin/Users"
                 className="btn btn-warning w-100">
                 Users
-            </Link>
+            </Link> */}
 
-            {profile ?
-                <div>
-                    <input value={profile.username} onChange={(e) =>
-                        setProfile({ ...profile, username: e.target.value })} />
-                    <input value={profile.password} onChange={(e) =>
-                        setProfile({ ...profile, password: e.target.value })} />
-                    <input value={profile.firstName} onChange={(e) =>
-                        setProfile({ ...profile, firstName: e.target.value })} />
-                    <input value={profile.lastName} onChange={(e) =>
-                        setProfile({ ...profile, lastName: e.target.value })} />
-                    <input value={profile.dob} type="date" onChange={(e) =>
-                        setProfile({ ...profile, dob: e.target.value })} />
-                    <input value={profile.email} onChange={(e) =>
-                        setProfile({ ...profile, email: e.target.value })} />
-                    <select onChange={(e) =>
-                        setProfile({ ...profile, role: e.target.value })}>
-                        <option value="USER">User</option>
-                        <option value="ADMIN">Admin</option>
-                        <option value="FACULTY">Faculty</option>
-                    </select>
-                    {/* <button onClick={save}>
-                        Save
-                    </button> */}
-                    <button onClick={signout}>
-                        Signout
-                    </button>
+            {credentials.username ?
+                <>
+                    <div className="profile-picture">
+                        <img src={profilePicURL}></img>
+                    </div>
+                    {updated &&
+                    <>
+                    <h1>update successful!</h1>
+                    </>
+                    }
+                    {dup &&
+                    <>
+                    <h1>Username was taken!</h1>
+                    </>
+                    }
+                    <div className="inline">
+                        <p>Username:</p>
+                        <input value={credentials.username} onChange={(e) =>
+                            setCredentials({ ...credentials, username: e.target.value })} />
+                        <p>Password:</p>
+                        <input value={credentials.password} onChange={(e) =>
+                            setCredentials({ ...credentials, password: e.target.value })} />
+                        <br />
+                        <input value={credentials.email} onChange={(e) =>
+                            setCredentials({ ...credentials, email: e.target.value })} />
+                        <br />
+                        <select onChange={(e) =>
+                            setCredentials({ ...credentials, role: e.target.value })}
+                            disabled>
+                            <option value="MEMBER">User</option>
+                            <option value="ADMIN">Admin</option>
+                            <option value="FACULTY">Faculty</option>
+                        </select>
+                        <button onClick={save}>
+                            Save
+                        </button>
+                        <button onClick={signout}>
+                            Signout
+                        </button>
 
 
-                </div>
+                    </div>
+                </>
                 :
-                <div>
-                    <h1>hiiii</h1>
+                <div className="inline">
+                    <p>You are not logged in. Please Login:</p> <Link to={"/login"}>Here</Link>
                 </div>
+
             }
         </div>
     );

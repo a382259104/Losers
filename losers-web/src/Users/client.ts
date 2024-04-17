@@ -35,4 +35,8 @@ export const signout = async () => {
   return response.data;
 };
 
-  
+export const updateUser = async (user:User) => {
+  const response = await axios.put(`${USERS_API}/profile/${user._id}`, user);
+  console.log(`THIS IS THE _ID:${user._id}`)
+  return response.data;
+};

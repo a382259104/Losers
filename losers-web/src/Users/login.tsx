@@ -26,13 +26,14 @@ function LoginPage() {
 
     const signin = async (e: any) => {
         e.preventDefault();
+        console.log(`we are loggin in with ${credentials.username}`)
+        console.log(`we are loggin in with ${credentials.role}`)
         await client.signin(credentials).then((result) => {
             if (result.error) {
                 setErrorMessage("Username or password incorrect. Please try again.")
             } else if (result.poop) {
                 setErrorMessage("Incorrect user role.")
             } else {
-                
                 dispatch(setUserProfile(result)); 
                 navigate("/Profile");
             }

@@ -15,7 +15,7 @@ function RegisterPage() {
         username: "",
         password: "",
         email: "",
-        role: ""
+        role: "MEMBER"
     });
 
     const [confirmPassword, setConfirmPassword] = useState("");
