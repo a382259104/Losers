@@ -15,6 +15,8 @@ export default function Profile() {
     });
 
     const [loggedIn, setLogin] = useState(false);
+    const [updated, setUpdated] = useState(false);
+    const [dup, setDup] = useState(false);
 
     const navigate = useNavigate();
     const fetchProfile = async () => {
@@ -37,7 +39,10 @@ export default function Profile() {
     const save = async () => {
         await UserModel.updateUser(credentials).then((result)=> {
             if (result.success) {
-                // make a state variable true and pop up a success message
+                setUpdated(true)
+            } 
+            if (result.error) {
+                setDup(true)
             }
         } )
     };
@@ -64,11 +69,21 @@ export default function Profile() {
                     <div className="profile-picture">
                         <img src={profilePicURL}></img>
                     </div>
+                    {updated &&
+                    <>
+                    <h1>update successful!</h1>
+                    </>
+                    }
+                    {dup &&
+                    <>
+                    <h1>Username was taken!</h1>
+                    </>
+                    }
                     <div className="inline">
                         <p>Username:</p>
                         <input value={credentials.username} onChange={(e) =>
                             setCredentials({ ...credentials, username: e.target.value })} />
-                        <br />
+                        <p>Password:</p>
                         <input value={credentials.password} onChange={(e) =>
                             setCredentials({ ...credentials, password: e.target.value })} />
                         <br />
@@ -78,7 +93,7 @@ export default function Profile() {
                         <select onChange={(e) =>
                             setCredentials({ ...credentials, role: e.target.value })}
                             disabled>
-                            <option value="USER">User</option>
+                            <option value="MEMBER">User</option>
                             <option value="ADMIN">Admin</option>
                             <option value="FACULTY">Faculty</option>
                         </select>

@@ -15,6 +15,13 @@ const findAllUsers = async (req, res) => {
 
 const updateUser = async (req,res) => {
     console.log("Hitting update user")
+
+    const user = await User.findOne({ username: req.body.username });
+
+    if (user && user.username !== currentUserLocal.username) {
+        console.log("USER NAME TAKEN")
+        return res.status(200).json({ error: "Username already taken" });
+    }
     const id = req.params.userid;
 
     const updatedUser = await User.findByIdAndUpdate(id, req.body, { new: true });
@@ -26,7 +33,12 @@ const updateUser = async (req,res) => {
 
 const signin = async (req, res) => {
     const { username, password, role } = req.body;
+
+    console.log(`We are signing in with ${username},${password},${role} `)
+
+
     const currentUser = await User.findOne({ username, password });
+
     if (currentUser) {
 
         if (currentUser.role === role) {
@@ -35,10 +47,7 @@ const signin = async (req, res) => {
             console.log("Login Successful!!!!!!!!")
             res.json(currentUser);
         } else {
-            console.log("the roles didn't match...")
-            console.log(currentUser.role)
-            console.log(role)
-
+            console.log(`the roles didn't match... expected ${currentUser.role}, actual:${role}`)
             return res.status(200).json({ poop: "Wrong role" });
         }
 
