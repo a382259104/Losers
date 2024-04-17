@@ -5,11 +5,16 @@ import { User } from "./client";
 import * as client from "./client"
 import { useNavigate } from "react-router";
 import { Link } from "react-router-dom";
-
+import { useDispatch } from "react-redux";
+import { setUserProfile } from "../StateVariables/UserRole";
 
 function LoginPage() {
 
-    // fill in the user data in JSON form - {username:"...", password:"..."} 
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
+    const [errorMessage, setErrorMessage] = useState<string>("");
+
+
     const [credentials, setCredentials] = useState<User>({
         _id: "",
         username: "",
@@ -17,7 +22,8 @@ function LoginPage() {
         email: "",
         role: "MEMBER"
     });
-    const navigate = useNavigate();
+
+
     const signin = async (e: any) => {
         e.preventDefault();
         await client.signin(credentials).then((result) => {
@@ -26,12 +32,14 @@ function LoginPage() {
             } else if (result.poop) {
                 setErrorMessage("Incorrect user role.")
             } else {
+                
+                dispatch(setUserProfile(result)); 
                 navigate("/Profile");
             }
         });
     };
 
-    const [errorMessage, setErrorMessage] = useState<string>("");
+
 
 
     return (

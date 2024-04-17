@@ -8,24 +8,28 @@ import SearchPage from './Search';
 import DetailsPage from './Details';
 import RegisterPage from './Users/register';
 import Details from './External_API/details';
+import { Provider } from 'react-redux';
+import store from './StateVariables/store';
 
 function App() {
   return (
-    <HashRouter>
-      <div>
-        <Routes>
-          <Route path="/" element={<Navigate to="/Home" />} />
-          <Route path="/Home" element={<HomePage/>} />
-          <Route path="/Search" element={<SearchPage/>} />
-          <Route path="/Login" element={<LoginPage/>} />
-          <Route path="/Register" element={<RegisterPage/>} />
-          <Route path="/Profile" element={<Profile/>} />
-          <Route path="/Details" element={<DetailsPage/>} />
-          <Route path="/ExternalAPI" element={<Details/>} />
-          <Route path="/Test" element={<Test />} />
-        </Routes>
-      </div>
-    </HashRouter>
+    <Provider store={store}>
+      <HashRouter>
+        <div>
+          <Routes>
+            <Route path="/" element={<Navigate to="/Home" />} />
+            <Route path="/Home" element={<HomePage />} />
+            <Route path="/Search" element={<SearchPage />} />
+            <Route path="/Login" element={<LoginPage />} />
+            <Route path="/Register" element={<RegisterPage />} />
+            <Route path="/Profile" element={<Profile />} />
+            <Route path="/Details" element={<DetailsPage />} />
+            <Route path="/ExternalAPI" element={<Details />} />
+            <Route path="/Test" element={<Test />} />
+          </Routes>
+        </div>
+      </HashRouter>
+    </Provider>
   );
 }
 
