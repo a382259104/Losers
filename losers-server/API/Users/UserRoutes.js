@@ -4,7 +4,7 @@ let currentUserLocal = {
     username: '',
     password: '',
     email: '',
-    role: ''
+    role: 'MEMBER'
 };
 
 const findAllUsers = async (req, res) => {
@@ -12,6 +12,17 @@ const findAllUsers = async (req, res) => {
     const users = await User.find();
     res.json(users);
 };
+
+const updateUser = async (req,res) => {
+    console.log("Hitting update user")
+    const id = req.params.userid;
+
+    const updatedUser = await User.findByIdAndUpdate(id, req.body, { new: true });
+    currentUserLocal = updatedUser
+
+    console.log(currentUserLocal)
+    res.status(200).json({success:"!"})
+}
 
 const signin = async (req, res) => {
     const { username, password, role } = req.body;
@@ -88,6 +99,9 @@ function UserRoutes(app) {
     app.post("/api/users/profile", profile);
     app.post("/api/users/signup", signup);
     app.post("/api/users/signout", signout);
+
+    app.put("/api/users/profile/:userid", updateUser);
+
 }
 
 export default UserRoutes
